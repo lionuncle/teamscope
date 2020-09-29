@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "96365481715",
+    "firebase_url": "https://teamscope-1.firebaseio.com",
+    "project_id": "teamscope-1",
+    "storage_bucket": "teamscope-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96365481715:android:45a9b055c8570c2422f186",
+        "android_client_info": {
+          "package_name": "com.lionuncle.teamscope"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96365481715-u4ldps26qqhr71p61vjbc80krcdin3l5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lionuncle.teamscope",
+            "certificate_hash": "1d4c35057290e85c8826903de0e68609affbe5e0"
+          }
+        },
+        {
+          "client_id": "96365481715-rr84n2t1l6sbjruc96ho3af0hpb9k50k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxMsmK64zsZb1UjNKUbIv0QBHym-j-guw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96365481715-rr84n2t1l6sbjruc96ho3af0hpb9k50k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
