@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/FormBuilder"
+        android:icon="@drawable/ic_add"
+        android:title="CREATE FORM" />
+    <item
+        android:id="@+id/FormFillerFragment"
+        android:icon="@drawable/ic_form"
+        android:title="FILL FORM" />
+    <item
+        android:id="@+id/FormResultFragment"
+        android:icon="@drawable/ic_result"
+        android:title="RESULTS" />
+</menu>

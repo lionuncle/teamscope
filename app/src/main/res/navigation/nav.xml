@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/FormBuilder">
+
+    <fragment
+        android:id="@+id/FormBuilder"
+        android:name="com.lionuncle.teamscope.FormBuilder"
+        android:label="fragment_form_builder"
+        tools:layout="@layout/fragment_form_builder" />
+    <fragment
+        android:id="@+id/FormFillerFragment"
+        android:name="com.lionuncle.teamscope.FormFillerFragment"
+        android:label="fragment_form_filler"
+        tools:layout="@layout/fragment_form_filler" />
+    <fragment
+        android:id="@+id/FormResultFragment"
+        android:name="com.lionuncle.teamscope.FormResultFragment"
+        android:label="fragment_form_result"
+        tools:layout="@layout/fragment_form_result" />
+</navigation>
