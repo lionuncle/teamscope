@@ -86,7 +86,7 @@ class SplashActivity : AppCompatActivity() {
     }
     private fun updateUI(user: FirebaseUser?){
         if (user == null) return
-        Toast.makeText(this, user.displayName.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "WELCOME : ${user.displayName.toString()}", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)

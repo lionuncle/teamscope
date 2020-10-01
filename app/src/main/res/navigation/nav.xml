@@ -9,7 +9,13 @@
         android:id="@+id/FormBuilder"
         android:name="com.lionuncle.teamscope.FormBuilder"
         android:label="fragment_form_builder"
-        tools:layout="@layout/fragment_form_builder" />
+        tools:layout="@layout/fragment_form_builder" >
+        <action
+            android:id="@+id/action_FormBuilder_to_createFormFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:destination="@id/createFormFragment" />
+    </fragment>
     <fragment
         android:id="@+id/FormFillerFragment"
         android:name="com.lionuncle.teamscope.FormFillerFragment"
@@ -20,4 +26,21 @@
         android:name="com.lionuncle.teamscope.FormResultFragment"
         android:label="fragment_form_result"
         tools:layout="@layout/fragment_form_result" />
+    <fragment
+        android:id="@+id/createFormFragment"
+        android:name="com.lionuncle.teamscope.FragmentCreateForm"
+        android:label="fragment_create_form"
+        tools:layout="@layout/fragment_create_form" >
+        <action
+            android:id="@+id/action_createFormFragment_to_addQuestionDialogFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:destination="@id/addQuestionDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuestionDialogFragment"
+        android:name="com.lionuncle.teamscope.AddQuestionDialogFragment"
+        android:label="fragment_add_question_dialog"
+        tools:layout="@layout/fragment_add_question_dialog" >
+    </fragment>
 </navigation>
