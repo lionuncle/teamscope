@@ -12,15 +12,19 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.lionuncle.teamscope.viewmodel.FormViewModel
 import java.time.Duration
 import java.util.*
 
 class FragmentCreateForm : Fragment() {
 
+     lateinit var viewModel: FormViewModel
     lateinit var formTitle: TextView
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +33,7 @@ class FragmentCreateForm : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v:View = inflater.inflate(R.layout.fragment_create_form, container, false)
+        viewModel = ViewModelProvider(this).get(FormViewModel::class.java)
         val saveBtn: Button = v.findViewById(R.id.FragmentCreateFormSaveBtn)
         val addBtn: LottieAnimationView = v.findViewById(R.id.FragmentCreateFormAddBtn)
         val recyclerView: RecyclerView = v.findViewById(R.id.FragmentCreateFormRecyclerView)
@@ -45,14 +50,24 @@ class FragmentCreateForm : Fragment() {
                 Option.TYPE_TIME -> Toast.makeText(context,"time",Toast.LENGTH_SHORT).show()
             }
         }
+        viewModel.getAllFormsOfUser("Heelo", object : FireStoreResult {
+            override fun onFormsGetResult(formsList: ArrayList<Form>) {
+                recyclerView.setLayoutManager(LinearLayoutManager(context));
+                recyclerView.setHasFixedSize(true);
+
+                recyclerView.adapter = FormAdapter(formsList)
+            }
+        })
+
+
 
         return v
     }
-
     override fun onResume() {
         super.onResume()
         val fTitle = arguments?.getString("formTitle")
         if (fTitle != null) formTitle.text = fTitle
+
     }
 
 

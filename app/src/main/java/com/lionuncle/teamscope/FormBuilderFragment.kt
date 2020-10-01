@@ -8,19 +8,29 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.gms.dynamic.SupportFragmentWrapper
+import com.lionuncle.teamscope.viewmodel.FormViewModel
 
 
 class FormBuilder : Fragment() {
+
+    lateinit var viewModel: FormViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        try {
+            viewModel =  ViewModelProvider(this).get(FormViewModel::class.java)
+        }catch (e: Exception){
+            Toast.makeText(context,"Please enter title",Toast.LENGTH_SHORT).show()
+        }
         val v: View = inflater.inflate(R.layout.fragment_form_builder, container, false)
         val nextBtn: LottieAnimationView = v.findViewById(R.id.FragmentFormBuilderNextBtn)
         val titleText = v.findViewById<TextView>(R.id.FragmentFormBuilderFormTitleText)
@@ -28,23 +38,17 @@ class FormBuilder : Fragment() {
         nextBtn.setOnClickListener {
             if (titleText.text.toString() == ""){ Toast.makeText(context,"Please enter title",Toast.LENGTH_SHORT).show(); return@setOnClickListener}
             val bundle = bundleOf("formTitle" to titleText.text.toString())
+
+
+            viewModel.createNewForm("Heelo",titleText.text.toString())
+
+
             findNavController().navigate(R.id.action_FormBuilder_to_createFormFragment,bundle)
         }
         // We use a String here, but any type that can be put in a Bundle is supported
 
 
+
         return v
-    }
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val navController = findNavController();
-        // We use a String here, but any type that can be put in a Bundle is supported
-        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<String>("type")?.observe(
-            viewLifecycleOwner) { result ->
-            // Do something with the result.
-            Toast.makeText(context,"Hi",Toast.LENGTH_SHORT).show()
-        }
     }
 }
