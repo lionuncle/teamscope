@@ -1,8 +1,8 @@
 package com.lionuncle.teamscope.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.lionuncle.teamscope.FireStoreResult
-import com.lionuncle.teamscope.Form
+import com.lionuncle.teamscope.utils.FireStoreResultForm
+import com.lionuncle.teamscope.models.Form
 import java.util.*
 
 
@@ -12,7 +12,7 @@ class FormRepository {
     fun addNewForm(form: Form){
         db.collection("Forms").document(form.id).set(form)
     }
-    fun getAllFormsOfUser(userId: String, result: FireStoreResult){
+    fun getAllFormsOfUser(userId: String, resultForm: FireStoreResultForm){
         db.collection("Forms").get().addOnSuccessListener {
             var currForm: Form
             val formList: ArrayList<Form> = ArrayList<Form>()
@@ -22,7 +22,7 @@ class FormRepository {
                     formList.add(currForm)
                 }
             }
-            result.onFormsGetResult(formList)
+            resultForm.onFormsGetResult(formList)
         }
     }
 

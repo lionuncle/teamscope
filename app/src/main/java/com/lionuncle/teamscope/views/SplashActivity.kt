@@ -1,4 +1,4 @@
-package com.lionuncle.teamscope
+package com.lionuncle.teamscope.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.lionuncle.teamscope.R
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth

@@ -1,52 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.builder.AddQuestionFragment">
+    android:id="@+id/QuestionFillerListItemLayoutBaseView"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <EditText
+    <TextView
         android:id="@+id/QuestionFillerListItemLayoutTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="15sp"
         android:text="Untitled Question"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/FragmentAddQuestionSpinner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:entries="@array/question_types"
-        app:layout_constraintBottom_toBottomOf="@+id/QuestionFillerListItemLayoutTitleText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/QuestionFillerListItemLayoutTitleText"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
+    <EditText
         android:id="@+id/QuestionFillerListItemLayoutShortAnswerText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:visibility="gone"
-        android:text="ANSWER TYPE: SHORT ANSWER TEXT"
+        android:hint="Enter Short Answer"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuestionFillerListItemLayoutTitleText" />
 
-    <TextView
+    <EditText
         android:id="@+id/QuestionFillerListItemLayoutNumberText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,33 +42,23 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:text="ANSWER TYPE: NUMBER TEXT"
+        android:hint="Enter Number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuestionFillerListItemLayoutShortAnswerText" />
 
-    <TextView
+    <EditText
         android:id="@+id/QuestionFillerListItemLayoutTimeText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:visibility="gone"
         android:layout_marginTop="8dp"
-        android:text="ANSWER TYPE: TIME TEXT"
+        android:hint="Enter TIME"
         android:layout_marginEnd="8dp"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuestionFillerListItemLayoutNumberText" />
 
-    <Button
-        android:id="@+id/FragmentAddQuestionDoneBtn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/soft_button"
-        android:text="SAVE"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/QuestionFillerListItemLayoutTimeText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

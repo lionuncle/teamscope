@@ -1,12 +1,13 @@
-package com.lionuncle.teamscope
+package com.lionuncle.teamscope.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.lionuncle.teamscope.models.Form
+import com.lionuncle.teamscope.R
 
 
 class FormAdapter(val formList: ArrayList<Form>) : RecyclerView.Adapter<FormAdapter.FormViewHolder>() {

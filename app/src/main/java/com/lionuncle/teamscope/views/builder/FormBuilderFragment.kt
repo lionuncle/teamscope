@@ -1,4 +1,4 @@
-package com.lionuncle.teamscope
+package com.lionuncle.teamscope.views.builder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
-import com.google.android.gms.dynamic.SupportFragmentWrapper
+import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.viewmodel.FormViewModel
 
 
@@ -40,8 +38,9 @@ class FormBuilder : Fragment() {
             val bundle = bundleOf("formTitle" to titleText.text.toString())
 
 
-            viewModel.createNewForm("Heelo",titleText.text.toString())
+            val formId = viewModel.createNewForm("Heelo",titleText.text.toString())
 
+            bundle.putString("currFormId",formId)
 
             findNavController().navigate(R.id.action_FormBuilder_to_createFormFragment,bundle)
         }

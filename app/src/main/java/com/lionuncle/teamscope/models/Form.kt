@@ -1,4 +1,4 @@
-package com.lionuncle.teamscope
+package com.lionuncle.teamscope.models
 
 import java.util.*
 

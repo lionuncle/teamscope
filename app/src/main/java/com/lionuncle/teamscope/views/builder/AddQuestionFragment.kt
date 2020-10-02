@@ -1,20 +1,22 @@
-package com.lionuncle.teamscope
+package com.lionuncle.teamscope.views.builder
 
-import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.lionuncle.teamscope.R
+import com.lionuncle.teamscope.models.Question
+import com.lionuncle.teamscope.viewmodel.QuestionViewModel
 
 
-class AddQuestionDialogFragment : Fragment() {
+class AddQuestionFragment : Fragment() {
 
+    lateinit var currFormId: String
+    lateinit var viewModel: QuestionViewModel
     lateinit var title: EditText
     lateinit var shortAnswer: TextView
     lateinit var number: TextView
@@ -28,12 +30,14 @@ class AddQuestionDialogFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_question_dialog, container, false)
-        title = view.findViewById(R.id.FragmentAddQuestionTitleText)
-        shortAnswer = view.findViewById(R.id.FragmentAddQuestionShortAnsText)
-        number = view.findViewById(R.id.FragmentAddQuestionNumberText)
-        time = view.findViewById(R.id.FragmentAddQuestionTimeText)
+        title = view.findViewById(R.id.QuestionFillerListItemLayoutTitleText)
+        shortAnswer = view.findViewById(R.id.QuestionFillerListItemLayoutShortAnswerText)
+        number = view.findViewById(R.id.QuestionFillerListItemLayoutNumberText)
+        time = view.findViewById(R.id.QuestionFillerListItemLayoutTimeText)
         spinner = view.findViewById(R.id.FragmentAddQuestionSpinner)
         saveBtn = view.findViewById(R.id.FragmentAddQuestionDoneBtn)
+        viewModel = ViewModelProvider(this).get(QuestionViewModel()::class.java)
+        currFormId = arguments?.getString("currFormId").toString()
 
 
         spinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
@@ -62,15 +66,27 @@ class AddQuestionDialogFragment : Fragment() {
         saveBtn.setOnClickListener {
             when (spinner.selectedItemPosition){
                  0 -> {
-                     findNavController().previousBackStackEntry?.savedStateHandle?.set("type", Option.TYPE_SHORT_ANSWER)
+                     viewModel.createNewQuestion(currFormId,title.text.toString(),Question.TYPE_SHORT_ANSWER)
+
+//                     findNavController().previousBackStackEntry?.savedStateHandle?.set("type",
+//                         Question.TYPE_SHORT_ANSWER
+//                     )
                      findNavController().popBackStack()
                  }
                 1 -> {
-                    findNavController().previousBackStackEntry?.savedStateHandle?.set("type", Option.TYPE_NUMBER)
+                    viewModel.createNewQuestion(currFormId,title.text.toString(),Question.TYPE_NUMBER)
+//
+//                    findNavController().previousBackStackEntry?.savedStateHandle?.set("type",
+//                        Question.TYPE_NUMBER
+//                    )
                     findNavController().popBackStack()
                 }
                 2 -> {
-                    findNavController().previousBackStackEntry?.savedStateHandle?.set("type", Option.TYPE_TIME)
+                    viewModel.createNewQuestion(currFormId,title.text.toString(),Question.TYPE_TIME)
+
+//                    findNavController().previousBackStackEntry?.savedStateHandle?.set("type",
+//                        Question.TYPE_TIME
+//                    )
                     findNavController().popBackStack()
                 }
             }
