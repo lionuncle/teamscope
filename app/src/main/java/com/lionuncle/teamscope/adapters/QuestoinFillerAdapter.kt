@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.models.Question
@@ -16,15 +17,9 @@ class QuestionFillerAdapter(val questionList: ArrayList<Question>) : RecyclerVie
         var title: TextView = itemView.findViewById(R.id.QuestionFillerListItemLayoutTitleText)
         var shortAnswer: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutShortAnswerText)
         var number: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutNumberText)
-        var time: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutTitleText)
-        var baseView: LinearLayout = itemView.findViewById(R.id.QuestionFillerListItemLayoutBaseView)
+        var time: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutTimeText)
+        var baseView: ConstraintLayout = itemView.findViewById(R.id.QuestionFillerListItemLayoutBaseView)
 
-
-//        fun FormViewHolder(itemView: View) {
-//            super.itemView
-//            title = itemView.findViewById(R.id.FormListItemLayoutTitleText)
-//            baseView = itemView.findViewById(R.id.FormListItemLayoutBaseView)
-//        }
 
     }
 
@@ -53,11 +48,6 @@ class QuestionFillerAdapter(val questionList: ArrayList<Question>) : RecyclerVie
                 holder.time.visibility = View.VISIBLE
             }
         }
-//        holder.baseView.setOnClickListener(View.OnClickListener {
-//            val i = Intent(holder.baseView.getContext(), CourseEnrollActivity::class.java)
-//            i.putExtra("ClickedId", formList.get(position).id)
-//            holder.baseView.getContext().startActivity(i)
-//        })
     }
 
     override fun getItemCount(): Int {

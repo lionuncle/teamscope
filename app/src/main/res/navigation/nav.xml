@@ -20,7 +20,13 @@
         android:id="@+id/FormFillerFragment"
         android:name="com.lionuncle.teamscope.views.filler.FormFillerFragment"
         android:label="fragment_form_filler"
-        tools:layout="@layout/fragment_form_filler" />
+        tools:layout="@layout/fragment_form_filler" >
+        <action
+            android:id="@+id/action_FormFillerFragment_to_fragmentFormFill"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:destination="@id/fragmentFormFill" />
+    </fragment>
     <fragment
         android:id="@+id/FormResultFragment"
         android:name="com.lionuncle.teamscope.views.result.FormResultFragment"
@@ -43,4 +49,9 @@
         android:label="fragment_add_question_dialog"
         tools:layout="@layout/fragment_add_question_dialog" >
     </fragment>
+    <fragment
+        android:id="@+id/fragmentFormFill"
+        android:name="com.lionuncle.teamscope.views.filler.FragmentFormFill"
+        android:label="fragment_form_fill"
+        tools:layout="@layout/fragment_form_fill" />
 </navigation>

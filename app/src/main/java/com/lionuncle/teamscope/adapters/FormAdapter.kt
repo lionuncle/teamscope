@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.models.Form
 import com.lionuncle.teamscope.R
@@ -15,13 +18,6 @@ class FormAdapter(val formList: ArrayList<Form>) : RecyclerView.Adapter<FormAdap
     inner class FormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.FormListItemLayoutTitleText)
         var baseView: LinearLayout = itemView.findViewById(R.id.FormListItemLayoutBaseView)
-
-//        fun FormViewHolder(itemView: View) {
-//            super.itemView
-//            title = itemView.findViewById(R.id.FormListItemLayoutTitleText)
-//            baseView = itemView.findViewById(R.id.FormListItemLayoutBaseView)
-//        }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FormViewHolder {
@@ -32,11 +28,11 @@ class FormAdapter(val formList: ArrayList<Form>) : RecyclerView.Adapter<FormAdap
 
     override fun onBindViewHolder(holder: FormViewHolder, position: Int) {
         holder.title.setText(formList.get(position).title)
-//        holder.baseView.setOnClickListener(View.OnClickListener {
-//            val i = Intent(holder.baseView.getContext(), CourseEnrollActivity::class.java)
-//            i.putExtra("ClickedId", formList.get(position).id)
-//            holder.baseView.getContext().startActivity(i)
-//        })
+        holder.baseView.setOnClickListener(View.OnClickListener {
+            val bundle = bundleOf("formTitle" to holder.title.text.toString())
+            bundle.putString("formId",formList.get(position).id)
+            holder.itemView.findNavController().navigate(R.id.action_FormFillerFragment_to_fragmentFormFill,bundle)
+        })
     }
 
     override fun getItemCount(): Int {

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.viewmodel.FormViewModel
+import com.lionuncle.teamscope.views.MainActivity
 
 
 class FormBuilder : Fragment() {
@@ -38,7 +39,7 @@ class FormBuilder : Fragment() {
             val bundle = bundleOf("formTitle" to titleText.text.toString())
 
 
-            val formId = viewModel.createNewForm("Heelo",titleText.text.toString())
+            val formId = viewModel.createNewForm(MainActivity.userId,titleText.text.toString())
 
             bundle.putString("currFormId",formId)
 
