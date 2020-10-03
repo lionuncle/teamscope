@@ -9,11 +9,11 @@ import java.util.ArrayList
 class QuestionRepository {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    fun addNewQuestion(question: Question){
+    fun addNewQuestion(question: Question) {
         db.collection("Questions").document(question.id).set(question)
     }
 
-    fun getAllQuestionsOfForm(formId: String, resultQuestion: FireStoreResultQuestion){
+    fun getAllQuestionsOfForm(formId: String, resultQuestion: FireStoreResultQuestion) {
         db.collection("Questions").get().addOnSuccessListener {
             var currQuestion: Question
             val questionList: ArrayList<Question> = ArrayList<Question>()

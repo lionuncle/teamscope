@@ -30,7 +30,7 @@ class FragmentFormFill : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view : View= inflater.inflate(R.layout.fragment_form_fill, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_form_fill, container, false)
         formId = arguments?.getString("formId").toString()
         formTitle = arguments?.getString("formTitle").toString()
         viewModel = ViewModelProvider(this).get(QuestionViewModel::class.java)
@@ -41,7 +41,7 @@ class FragmentFormFill : Fragment() {
         val formTitleText: TextView = view.findViewById(R.id.FragmentFormFillFormTitleText)
         formTitleText.text = formTitle
 
-        viewModel.getAllQuestionsOfForm(formId,object : FireStoreResultQuestion{
+        viewModel.getAllQuestionsOfForm(formId, object : FireStoreResultQuestion {
             override fun onQuestionGetResult(questionsList: ArrayList<Question>) {
                 recyclerView.adapter = QuestionFillerAdapter(questionsList)
             }
@@ -54,6 +54,7 @@ class FragmentFormFill : Fragment() {
         }
         return view
     }
+
     override fun onResume() {
         super.onResume()
         recyclerView.adapter?.notifyDataSetChanged()

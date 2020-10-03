@@ -26,27 +26,28 @@ class FormBuilder : Fragment() {
     ): View? {
 
         try {
-            viewModel =  ViewModelProvider(this).get(FormViewModel::class.java)
-        }catch (e: Exception){
-            Toast.makeText(context,"Please enter title",Toast.LENGTH_SHORT).show()
+            viewModel = ViewModelProvider(this).get(FormViewModel::class.java)
+        } catch (e: Exception) {
+            Toast.makeText(context, "Please enter title", Toast.LENGTH_SHORT).show()
         }
         val v: View = inflater.inflate(R.layout.fragment_form_builder, container, false)
         val nextBtn: LottieAnimationView = v.findViewById(R.id.FragmentFormBuilderNextBtn)
         val titleText = v.findViewById<TextView>(R.id.FragmentFormBuilderFormTitleText)
 
         nextBtn.setOnClickListener {
-            if (titleText.text.toString() == ""){ Toast.makeText(context,"Please enter title",Toast.LENGTH_SHORT).show(); return@setOnClickListener}
+            if (titleText.text.toString() == "") {
+                Toast.makeText(context, "Please enter title", Toast.LENGTH_SHORT)
+                    .show(); return@setOnClickListener
+            }
             val bundle = bundleOf("formTitle" to titleText.text.toString())
 
+            val formId = viewModel.createNewForm(MainActivity.userId, titleText.text.toString())
 
-            val formId = viewModel.createNewForm(MainActivity.userId,titleText.text.toString())
+            bundle.putString("currFormId", formId)
 
-            bundle.putString("currFormId",formId)
-
-            findNavController().navigate(R.id.action_FormBuilder_to_createFormFragment,bundle)
+            findNavController().navigate(R.id.action_FormBuilder_to_createFormFragment, bundle)
         }
         // We use a String here, but any type that can be put in a Bundle is supported
-
 
 
         return v

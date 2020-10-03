@@ -8,7 +8,7 @@ data class Question(
     val answerType: String = "",
     val answer: String = "",
     val id: String = UUID.randomUUID().toString()
-){
+) {
     companion object {
         const val TYPE_SHORT_ANSWER: String = "TYPE_SHORT_ANSWER"
         const val TYPE_TIME: String = "TYPE_TIME"

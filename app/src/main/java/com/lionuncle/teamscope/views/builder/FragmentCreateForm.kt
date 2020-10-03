@@ -44,7 +44,10 @@ class FragmentCreateForm : Fragment() {
         currentFormId = arguments?.getString("currFormId").toString()
         addBtn.setOnClickListener {
             val bundle = bundleOf("currFormId" to currentFormId)
-            findNavController().navigate(R.id.action_createFormFragment_to_addQuestionDialogFragment,bundle)
+            findNavController().navigate(
+                R.id.action_createFormFragment_to_addQuestionDialogFragment,
+                bundle
+            )
         }
 //        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("type")
 //            ?.observe(

@@ -5,15 +5,15 @@ import com.lionuncle.teamscope.utils.FireStoreResultForm
 import com.lionuncle.teamscope.models.Form
 import com.lionuncle.teamscope.repository.FormRepository
 
-class FormViewModel: ViewModel() {
+class FormViewModel : ViewModel() {
 
-    fun createNewForm(userId: String,formTitle: String) :String{
-        val form = Form(formTitle,userId)
+    fun createNewForm(userId: String, formTitle: String): String {
+        val form = Form(formTitle, userId)
         FormRepository().addNewForm(form)
         return form.id
     }
 
-    fun getAllFormsOfUser(userId: String, resultForm: FireStoreResultForm){
-        FormRepository().getAllFormsOfUser(userId,resultForm)
+    fun getAllFormsOfUser(userId: String, resultForm: FireStoreResultForm) {
+        FormRepository().getAllFormsOfUser(userId, resultForm)
     }
 }

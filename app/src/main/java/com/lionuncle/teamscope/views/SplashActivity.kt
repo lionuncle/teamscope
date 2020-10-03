@@ -16,14 +16,14 @@ import com.lionuncle.teamscope.R
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    val RC_SIGN_IN : Int = 1
-    lateinit var signInButton : SignInButton
+    val RC_SIGN_IN: Int = 1
+    lateinit var signInButton: SignInButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         auth = FirebaseAuth.getInstance()
         signInButton = findViewById<SignInButton>(R.id.ActivitySplashBtnGoogleSignIn)
-        signInButton.setOnClickListener{
+        signInButton.setOnClickListener {
             signIn()
         }
         // Configure Google Sign In
@@ -33,6 +33,7 @@ class SplashActivity : AppCompatActivity() {
             .build()
 
     }
+
     private fun signIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -42,12 +43,14 @@ class SplashActivity : AppCompatActivity() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
+
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         updateUI(currentUser)
     }
+
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -58,15 +61,13 @@ class SplashActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
-                    // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)
-                    // ...
                     updateUI(null)
                 }
 
-                // ...
             }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -85,11 +86,12 @@ class SplashActivity : AppCompatActivity() {
             }
         }
     }
-    private fun updateUI(user: FirebaseUser?){
+
+    private fun updateUI(user: FirebaseUser?) {
         if (user == null) return
         Toast.makeText(this, "WELCOME : ${user.displayName.toString()}", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("userId",user.uid)
+        intent.putExtra("userId", user.uid)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }

@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.models.Question
 
-class QuestionFillerAdapter(val questionList: ArrayList<Question>) : RecyclerView.Adapter<QuestionFillerAdapter.QuestionViewHolder>() {
+class QuestionFillerAdapter(val questionList: ArrayList<Question>) :
+    RecyclerView.Adapter<QuestionFillerAdapter.QuestionViewHolder>() {
 
     inner class QuestionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.QuestionFillerListItemLayoutTitleText)
-        var shortAnswer: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutShortAnswerText)
+        var shortAnswer: EditText =
+            itemView.findViewById(R.id.QuestionFillerListItemLayoutShortAnswerText)
         var number: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutNumberText)
         var time: EditText = itemView.findViewById(R.id.QuestionFillerListItemLayoutTimeText)
-        var baseView: ConstraintLayout = itemView.findViewById(R.id.QuestionFillerListItemLayoutBaseView)
-
 
     }
 
@@ -31,7 +31,7 @@ class QuestionFillerAdapter(val questionList: ArrayList<Question>) : RecyclerVie
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         holder.title.setText(questionList.get(position).title)
-        when(questionList.get(position).answerType){
+        when (questionList.get(position).answerType) {
             Question.TYPE_SHORT_ANSWER -> {
                 holder.shortAnswer.visibility = View.VISIBLE
                 holder.number.visibility = View.GONE

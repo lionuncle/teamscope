@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.models.Question
 
-class QuestionBuilderAdapter(val questionList: ArrayList<Question>) : RecyclerView.Adapter<QuestionBuilderAdapter.QuestionViewHolder>() {
+class QuestionBuilderAdapter(private val questionList: ArrayList<Question>) :
+    RecyclerView.Adapter<QuestionBuilderAdapter.QuestionViewHolder>() {
 
     inner class QuestionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.QuestionBuilderListItemLayoutTitleText)
@@ -26,7 +27,7 @@ class QuestionBuilderAdapter(val questionList: ArrayList<Question>) : RecyclerVi
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         holder.title.text = questionList.get(position).title
-        when(questionList.get(position).answerType){
+        when (questionList.get(position).answerType) {
             Question.TYPE_SHORT_ANSWER -> {
                 holder.type.text = "Answer TYPE: SHORT ANSWER"
             }

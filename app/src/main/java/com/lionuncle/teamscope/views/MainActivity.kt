@@ -8,9 +8,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lionuncle.teamscope.R
 
 class MainActivity : AppCompatActivity() {
-    companion object{
+    companion object {
         lateinit var userId: String
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -40,10 +40,15 @@ class AddQuestionFragment : Fragment() {
         currFormId = arguments?.getString("currFormId").toString()
 
 
-        spinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 
-                when (position){
+                when (position) {
                     0 -> {
                         shortAnswer.visibility = View.VISIBLE
                         number.visibility = View.GONE
@@ -61,20 +66,29 @@ class AddQuestionFragment : Fragment() {
                     }
                 }
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
         saveBtn.setOnClickListener {
-            when (spinner.selectedItemPosition){
-                 0 -> {
-                     viewModel.createNewQuestion(currFormId,title.text.toString(),Question.TYPE_SHORT_ANSWER)
+            when (spinner.selectedItemPosition) {
+                0 -> {
+                    viewModel.createNewQuestion(
+                        currFormId,
+                        title.text.toString(),
+                        Question.TYPE_SHORT_ANSWER
+                    )
 
 //                     findNavController().previousBackStackEntry?.savedStateHandle?.set("type",
 //                         Question.TYPE_SHORT_ANSWER
 //                     )
-                     findNavController().popBackStack()
-                 }
+                    findNavController().popBackStack()
+                }
                 1 -> {
-                    viewModel.createNewQuestion(currFormId,title.text.toString(),Question.TYPE_NUMBER)
+                    viewModel.createNewQuestion(
+                        currFormId,
+                        title.text.toString(),
+                        Question.TYPE_NUMBER
+                    )
 //
 //                    findNavController().previousBackStackEntry?.savedStateHandle?.set("type",
 //                        Question.TYPE_NUMBER
@@ -82,7 +96,11 @@ class AddQuestionFragment : Fragment() {
                     findNavController().popBackStack()
                 }
                 2 -> {
-                    viewModel.createNewQuestion(currFormId,title.text.toString(),Question.TYPE_TIME)
+                    viewModel.createNewQuestion(
+                        currFormId,
+                        title.text.toString(),
+                        Question.TYPE_TIME
+                    )
 
 //                    findNavController().previousBackStackEntry?.savedStateHandle?.set("type",
 //                        Question.TYPE_TIME

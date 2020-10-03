@@ -9,10 +9,11 @@ import java.util.*
 class FormRepository {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    fun addNewForm(form: Form){
+    fun addNewForm(form: Form) {
         db.collection("Forms").document(form.id).set(form)
     }
-    fun getAllFormsOfUser(userId: String, resultForm: FireStoreResultForm){
+
+    fun getAllFormsOfUser(userId: String, resultForm: FireStoreResultForm) {
         db.collection("Forms").get().addOnSuccessListener {
             var currForm: Form
             val formList: ArrayList<Form> = ArrayList<Form>()

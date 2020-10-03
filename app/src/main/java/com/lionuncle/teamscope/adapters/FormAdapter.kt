@@ -13,7 +13,8 @@ import com.lionuncle.teamscope.models.Form
 import com.lionuncle.teamscope.R
 
 
-class FormAdapter(val formList: ArrayList<Form>) : RecyclerView.Adapter<FormAdapter.FormViewHolder>() {
+class FormAdapter(val formList: ArrayList<Form>) :
+    RecyclerView.Adapter<FormAdapter.FormViewHolder>() {
 
     inner class FormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.FormListItemLayoutTitleText)
@@ -30,8 +31,9 @@ class FormAdapter(val formList: ArrayList<Form>) : RecyclerView.Adapter<FormAdap
         holder.title.setText(formList.get(position).title)
         holder.baseView.setOnClickListener(View.OnClickListener {
             val bundle = bundleOf("formTitle" to holder.title.text.toString())
-            bundle.putString("formId",formList.get(position).id)
-            holder.itemView.findNavController().navigate(R.id.action_FormFillerFragment_to_fragmentFormFill,bundle)
+            bundle.putString("formId", formList.get(position).id)
+            holder.itemView.findNavController()
+                .navigate(R.id.action_FormFillerFragment_to_fragmentFormFill, bundle)
         })
     }
 
