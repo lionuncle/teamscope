@@ -5,76 +5,75 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.lionuncle.teamscope.R
+import com.lionuncle.teamscope.databinding.FragmentAddQuestionBinding
 import com.lionuncle.teamscope.models.Question
 import com.lionuncle.teamscope.viewmodel.QuestionViewModel
 
 
 class AddQuestionFragment : Fragment() {
 
-    lateinit var currFormId: String
     lateinit var viewModel: QuestionViewModel
-    lateinit var title: EditText
-    lateinit var shortAnswer: TextView
-    lateinit var number: TextView
-    lateinit var time: TextView
-    lateinit var spinner: Spinner
-    lateinit var saveBtn: Button
+    lateinit var currFormId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_add_question_dialog, container, false)
-        title = view.findViewById(R.id.QuestionFillerListItemLayoutTitleText)
-        shortAnswer = view.findViewById(R.id.QuestionFillerListItemLayoutShortAnswerText)
-        number = view.findViewById(R.id.QuestionFillerListItemLayoutNumberText)
-        time = view.findViewById(R.id.QuestionFillerListItemLayoutTimeText)
-        spinner = view.findViewById(R.id.FragmentAddQuestionSpinner)
-        saveBtn = view.findViewById(R.id.FragmentAddQuestionDoneBtn)
+        val binding = DataBindingUtil.inflate<FragmentAddQuestionBinding>(
+            inflater,
+            R.layout.fragment_add_question,
+            container,
+            false
+        )
+
         viewModel = ViewModelProvider(this).get(QuestionViewModel()::class.java)
         currFormId = arguments?.getString("currFormId").toString()
 
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+        binding.FragmentAddQuestionSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
 
-                when (position) {
-                    0 -> {
-                        shortAnswer.visibility = View.VISIBLE
-                        number.visibility = View.GONE
-                        time.visibility = View.GONE
-                    }
-                    1 -> {
-                        shortAnswer.visibility = View.GONE
-                        number.visibility = View.VISIBLE
-                        time.visibility = View.GONE
-                    }
-                    2 -> {
-                        shortAnswer.visibility = View.GONE
-                        number.visibility = View.GONE
-                        time.visibility = View.VISIBLE
+                    when (position) {
+                        0 -> {
+                            binding.QuestionFillerListItemLayoutShortAnswerText.visibility =
+                                View.VISIBLE
+                            binding.QuestionFillerListItemLayoutNumberText.visibility = View.GONE
+                            binding.QuestionFillerListItemLayoutTimeText.visibility = View.GONE
+                        }
+                        1 -> {
+                            binding.QuestionFillerListItemLayoutShortAnswerText.visibility =
+                                View.GONE
+                            binding.QuestionFillerListItemLayoutNumberText.visibility = View.VISIBLE
+                            binding.QuestionFillerListItemLayoutTimeText.visibility = View.GONE
+                        }
+                        2 -> {
+                            binding.QuestionFillerListItemLayoutShortAnswerText.visibility =
+                                View.GONE
+                            binding.QuestionFillerListItemLayoutNumberText.visibility = View.GONE
+                            binding.QuestionFillerListItemLayoutTimeText.visibility = View.VISIBLE
+                        }
                     }
                 }
-            }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-        }
-        saveBtn.setOnClickListener {
-            when (spinner.selectedItemPosition) {
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        binding.FragmentAddQuestionDoneBtn.setOnClickListener {
+            when (binding.FragmentAddQuestionSpinner.selectedItemPosition) {
                 0 -> {
                     viewModel.createNewQuestion(
                         currFormId,
-                        title.text.toString(),
+                        binding.QuestionFillerListItemLayoutTitleText.text.toString(),
                         Question.TYPE_SHORT_ANSWER
                     )
 
@@ -86,7 +85,7 @@ class AddQuestionFragment : Fragment() {
                 1 -> {
                     viewModel.createNewQuestion(
                         currFormId,
-                        title.text.toString(),
+                        binding.QuestionFillerListItemLayoutTitleText.text.toString(),
                         Question.TYPE_NUMBER
                     )
 //
@@ -98,7 +97,7 @@ class AddQuestionFragment : Fragment() {
                 2 -> {
                     viewModel.createNewQuestion(
                         currFormId,
-                        title.text.toString(),
+                        binding.QuestionFillerListItemLayoutTitleText.text.toString(),
                         Question.TYPE_TIME
                     )
 
@@ -110,7 +109,7 @@ class AddQuestionFragment : Fragment() {
             }
         }
 
-        return view
+        return binding.root
     }
 
 }

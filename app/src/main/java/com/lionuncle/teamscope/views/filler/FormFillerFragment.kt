@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.adapters.FormAdapter
+import com.lionuncle.teamscope.databinding.FragmentCreateFormBInding
+import com.lionuncle.teamscope.databinding.FragmentFormFillerBinding
 import com.lionuncle.teamscope.models.Form
 import com.lionuncle.teamscope.utils.FireStoreResultForm
 import com.lionuncle.teamscope.viewmodel.FormViewModel
@@ -26,9 +29,15 @@ class FormFillerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_form_filler, container, false)
+        val binding = DataBindingUtil.inflate<FragmentFormFillerBinding>(
+            inflater,
+            R.layout.fragment_form_filler,
+            container,
+            false
+        )
+
         viewModel = ViewModelProvider(this).get(FormViewModel::class.java)
-        recyclerView = view.findViewById(R.id.FragmentFormFillerRecyclerView)
+        recyclerView = binding.FragmentFormFillerRecyclerView
 
         viewModel.getAllFormsOfUser(MainActivity.userId, object : FireStoreResultForm {
 
@@ -41,7 +50,7 @@ class FormFillerFragment : Fragment() {
         })
 
 
-        return view
+        return binding.root
     }
 
     override fun onResume() {

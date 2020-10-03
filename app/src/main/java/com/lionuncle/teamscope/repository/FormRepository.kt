@@ -6,8 +6,18 @@ import com.lionuncle.teamscope.models.Form
 import java.util.*
 
 
-class FormRepository {
+class FormRepository private constructor() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    //implementing singleton design pattern in a thread safe manner
+    companion object {
+        @Volatile
+        private var instance: FormRepository? = null
+        fun getInstance() = instance ?: synchronized(this) {
+            instance ?: FormRepository().also { instance = it }
+        }
+    }
+
 
     fun addNewForm(form: Form) {
         db.collection("Forms").document(form.id).set(form)

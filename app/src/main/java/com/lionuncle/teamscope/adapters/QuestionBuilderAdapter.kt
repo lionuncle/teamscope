@@ -6,23 +6,31 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.R
+import com.lionuncle.teamscope.databinding.FormListItemLayoutBinding
+import com.lionuncle.teamscope.databinding.QuestionBuilderListItemLayoutBinding
 import com.lionuncle.teamscope.models.Question
 
 class QuestionBuilderAdapter(private val questionList: ArrayList<Question>) :
     RecyclerView.Adapter<QuestionBuilderAdapter.QuestionViewHolder>() {
 
-    inner class QuestionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title: TextView = itemView.findViewById(R.id.QuestionBuilderListItemLayoutTitleText)
-        var type: TextView = itemView.findViewById(R.id.QuestionBuilderListItemLayoutTypeText)
+    inner class QuestionViewHolder(binding: QuestionBuilderListItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        var title: TextView = binding.QuestionBuilderListItemLayoutTitleText
+        var type: TextView = binding.QuestionBuilderListItemLayoutTypeText
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
-        val v: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.question_builder_list_item_layout, parent, false)
-        return QuestionViewHolder(v)
+        val binding = DataBindingUtil.inflate<QuestionBuilderListItemLayoutBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.question_builder_list_item_layout,
+            parent,
+            false
+        )
+        return QuestionViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {

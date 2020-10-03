@@ -9,11 +9,11 @@ class FormViewModel : ViewModel() {
 
     fun createNewForm(userId: String, formTitle: String): String {
         val form = Form(formTitle, userId)
-        FormRepository().addNewForm(form)
+        FormRepository.getInstance().addNewForm(form)
         return form.id
     }
 
     fun getAllFormsOfUser(userId: String, resultForm: FireStoreResultForm) {
-        FormRepository().getAllFormsOfUser(userId, resultForm)
+        FormRepository.getInstance().getAllFormsOfUser(userId, resultForm)
     }
 }

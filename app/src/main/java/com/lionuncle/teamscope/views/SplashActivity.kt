@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
@@ -13,17 +14,19 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.lionuncle.teamscope.R
+import com.lionuncle.teamscope.databinding.MainActivityBinding
+import com.lionuncle.teamscope.databinding.SplashActivityBinding
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     val RC_SIGN_IN: Int = 1
-    lateinit var signInButton: SignInButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        val binding =
+            DataBindingUtil.setContentView<SplashActivityBinding>(this, R.layout.activity_splash)
+
         auth = FirebaseAuth.getInstance()
-        signInButton = findViewById<SignInButton>(R.id.ActivitySplashBtnGoogleSignIn)
-        signInButton.setOnClickListener {
+        binding.ActivitySplashBtnGoogleSignIn.setOnClickListener {
             signIn()
         }
         // Configure Google Sign In

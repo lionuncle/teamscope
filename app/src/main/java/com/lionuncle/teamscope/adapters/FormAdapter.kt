@@ -6,25 +6,32 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.lionuncle.teamscope.models.Form
 import com.lionuncle.teamscope.R
+import com.lionuncle.teamscope.databinding.FormListItemLayoutBinding
+import com.lionuncle.teamscope.models.Form
 
 
-class FormAdapter(val formList: ArrayList<Form>) :
+class FormAdapter(private val formList: ArrayList<Form>) :
     RecyclerView.Adapter<FormAdapter.FormViewHolder>() {
 
-    inner class FormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title: TextView = itemView.findViewById(R.id.FormListItemLayoutTitleText)
-        var baseView: LinearLayout = itemView.findViewById(R.id.FormListItemLayoutBaseView)
+    inner class FormViewHolder(binding: FormListItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        var title: TextView = binding.FormListItemLayoutTitleText
+        var baseView: LinearLayout = binding.FormListItemLayoutBaseView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FormViewHolder {
-        val v: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.form_list_item_layout, parent, false)
-        return FormViewHolder(v)
+        val binding = DataBindingUtil.inflate<FormListItemLayoutBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.form_list_item_layout,
+            parent,
+            false
+        )
+        return FormViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FormViewHolder, position: Int) {

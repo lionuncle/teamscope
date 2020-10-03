@@ -47,7 +47,7 @@
         android:id="@+id/addQuestionDialogFragment"
         android:name="com.lionuncle.teamscope.views.builder.AddQuestionFragment"
         android:label="fragment_add_question_dialog"
-        tools:layout="@layout/fragment_add_question_dialog" >
+        tools:layout="@layout/fragment_add_question" >
     </fragment>
     <fragment
         android:id="@+id/fragmentFormFill"

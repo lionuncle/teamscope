@@ -9,10 +9,10 @@ import com.lionuncle.teamscope.utils.FireStoreResultQuestion
 class QuestionViewModel : ViewModel() {
 
     fun createNewQuestion(formId: String, questionTitle: String, questionType: String) {
-        QuestionRepository().addNewQuestion(Question(questionTitle, formId, questionType))
+        QuestionRepository.getInstance().addNewQuestion(Question(questionTitle, formId, questionType))
     }
 
     fun getAllQuestionsOfForm(formId: String, resultQuestion: FireStoreResultQuestion) {
-        QuestionRepository().getAllQuestionsOfForm(formId, resultQuestion)
+        QuestionRepository.getInstance().getAllQuestionsOfForm(formId, resultQuestion)
     }
 }

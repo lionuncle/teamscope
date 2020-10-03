@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lionuncle.teamscope.R
 import com.lionuncle.teamscope.adapters.QuestionFillerAdapter
+import com.lionuncle.teamscope.databinding.FragmentCreateFormBInding
+import com.lionuncle.teamscope.databinding.FragmentFormFillBinding
 import com.lionuncle.teamscope.models.Question
 import com.lionuncle.teamscope.utils.FireStoreResultQuestion
 import com.lionuncle.teamscope.viewmodel.FormViewModel
@@ -29,17 +32,20 @@ class FragmentFormFill : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_form_fill, container, false)
+        val binding = DataBindingUtil.inflate<FragmentFormFillBinding>(
+            inflater,
+            R.layout.fragment_form_fill,
+            container,
+            false
+        )
         formId = arguments?.getString("formId").toString()
         formTitle = arguments?.getString("formTitle").toString()
         viewModel = ViewModelProvider(this).get(QuestionViewModel::class.java)
-        recyclerView = view.findViewById(R.id.FragmentFormFillFormRecyclerView)
+        recyclerView = binding.FragmentFormFillFormRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context);
         recyclerView.setHasFixedSize(true);
 
-        val formTitleText: TextView = view.findViewById(R.id.FragmentFormFillFormTitleText)
-        formTitleText.text = formTitle
+        binding.FragmentFormFillFormTitleText.text = formTitle
 
         viewModel.getAllQuestionsOfForm(formId, object : FireStoreResultQuestion {
             override fun onQuestionGetResult(questionsList: ArrayList<Question>) {
@@ -48,11 +54,10 @@ class FragmentFormFill : Fragment() {
         })
 
 
-        val doneBtn: Button = view.findViewById(R.id.FragmentFormFillFormDoneBtn)
-        doneBtn.setOnClickListener {
+        binding.FragmentFormFillFormDoneBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-        return view
+        return binding.root
     }
 
     override fun onResume() {
