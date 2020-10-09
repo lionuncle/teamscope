@@ -38,7 +38,3 @@ Howdy, you! This is [Muhammad Aqib](http://aqib.engineer/), an aspiring Android 
 </a>
 </div>
 <br>
-
-## 🔑 LICENSE
-
-- MIT
